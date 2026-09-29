@@ -1,5 +1,10 @@
 import CollectionPage from './CollectionPage.jsx';
 
+const codespaceName = import.meta.env.VITE_CODESPACE_NAME?.trim();
+const endpoint = codespaceName
+  ? `https://${codespaceName}-8000.app.github.dev/api/users/`
+  : 'http://localhost:8000/api/users/';
+
 const columns = [
   { key: 'displayName', label: 'Estudiante' },
   { key: 'username', label: 'Usuario' },
@@ -14,7 +19,7 @@ export default function Users() {
       eyebrow="Comunidad"
       title="Estudiantes"
       description="Perfiles y progreso de la comunidad OctoFit."
-      endpoint="/api/users/"
+      endpoint={endpoint}
       columns={columns}
     />
   );

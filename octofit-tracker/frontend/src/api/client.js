@@ -25,7 +25,8 @@ export function normalizeCollection(payload) {
 }
 
 export async function fetchCollection(endpoint, { signal } = {}) {
-  const response = await fetch(`${apiBaseUrl}${endpoint}`, { signal });
+  const url = /^https?:\/\//.test(endpoint) ? endpoint : `${apiBaseUrl}${endpoint}`;
+  const response = await fetch(url, { signal });
   if (!response.ok) {
     throw new Error(`La API respondió con el estado ${response.status}.`);
   }
