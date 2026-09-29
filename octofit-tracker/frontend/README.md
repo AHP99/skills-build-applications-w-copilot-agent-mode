@@ -1,16 +1,26 @@
-# React + Vite
+# OctoFit Tracker frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+React 19 presentation tier for the OctoFit Tracker application.
 
-Currently, two official plugins are available:
+## Start the application
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Run the frontend and backend in separate terminals:
 
-## React Compiler
+```bash
+npm run dev --prefix octofit-tracker/frontend -- --host 0.0.0.0
+npm run dev --prefix octofit-tracker/backend
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+The frontend uses port `5173`; the API uses port `8000` and MongoDB uses port `27017`.
 
-## Expanding the Oxlint configuration
+## Configure the API host
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+In Codespaces, define `VITE_CODESPACE_NAME` in `octofit-tracker/frontend/.env.local`:
+
+```dotenv
+VITE_CODESPACE_NAME=your-codespace-name
+```
+
+Vite builds API endpoints as `https://<VITE_CODESPACE_NAME>-8000.app.github.dev/api/<resource>/`. Restart the frontend after changing `.env.local` so Vite reloads the variable. If `VITE_CODESPACE_NAME` is missing or blank, the client safely falls back to `http://localhost:8000/api/` instead of creating an `undefined` URL.
+
+The API client accepts both plain arrays and paginated responses containing `results`, `items`, `data`, or `records` arrays.
