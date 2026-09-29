@@ -14,7 +14,7 @@ export default function Workouts() {
       eyebrow="Ideas para entrenar"
       title="Entrenamientos"
       description="Sesiones sugeridas para distintos niveles y objetivos."
-      resource="workouts"
+      endpoint="/api/workouts/"
       columns={columns}
     />
   );

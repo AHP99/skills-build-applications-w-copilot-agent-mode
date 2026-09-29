@@ -14,7 +14,7 @@ export default function Users() {
       eyebrow="Comunidad"
       title="Estudiantes"
       description="Perfiles y progreso de la comunidad OctoFit."
-      resource="users"
+      endpoint="/api/users/"
       columns={columns}
     />
   );

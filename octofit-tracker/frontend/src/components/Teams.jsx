@@ -12,7 +12,7 @@ export default function Teams() {
       eyebrow="Comunidad"
       title="Equipos"
       description="Grupos que convierten el movimiento en un objetivo compartido."
-      resource="teams"
+      endpoint="/api/teams/"
       columns={columns}
     />
   );

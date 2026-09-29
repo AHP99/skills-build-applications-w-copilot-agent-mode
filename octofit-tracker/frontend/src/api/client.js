@@ -1,8 +1,8 @@
 const codespaceName = import.meta.env.VITE_CODESPACE_NAME?.trim();
 
 export const apiBaseUrl = codespaceName
-  ? `https://${codespaceName}-8000.app.github.dev/api`
-  : 'http://localhost:8000/api';
+  ? `https://${codespaceName}-8000.app.github.dev`
+  : 'http://localhost:8000';
 
 export function normalizeCollection(payload) {
   if (Array.isArray(payload)) {
@@ -24,8 +24,8 @@ export function normalizeCollection(payload) {
   };
 }
 
-export async function fetchCollection(resource, { signal } = {}) {
-  const response = await fetch(`${apiBaseUrl}/${resource}/`, { signal });
+export async function fetchCollection(endpoint, { signal } = {}) {
+  const response = await fetch(`${apiBaseUrl}${endpoint}`, { signal });
   if (!response.ok) {
     throw new Error(`La API respondió con el estado ${response.status}.`);
   }

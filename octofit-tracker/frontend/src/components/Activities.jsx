@@ -15,7 +15,7 @@ export default function Activities() {
       eyebrow="Movimiento"
       title="Actividades"
       description="Entrenamientos registrados por la comunidad escolar."
-      resource="activities"
+      endpoint="/api/activities/"
       columns={columns}
     />
   );

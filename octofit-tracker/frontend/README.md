@@ -21,6 +21,6 @@ In Codespaces, define `VITE_CODESPACE_NAME` in `octofit-tracker/frontend/.env.lo
 VITE_CODESPACE_NAME=your-codespace-name
 ```
 
-Vite builds API endpoints as `https://<VITE_CODESPACE_NAME>-8000.app.github.dev/api/<resource>/`. Restart the frontend after changing `.env.local` so Vite reloads the variable. If `VITE_CODESPACE_NAME` is missing or blank, the client safely falls back to `http://localhost:8000/api/` instead of creating an `undefined` URL.
+The frontend defines each API endpoint under `/api/` and prefixes it with `https://<VITE_CODESPACE_NAME>-8000.app.github.dev`. Restart the frontend after changing `.env.local` so Vite reloads the variable. If `VITE_CODESPACE_NAME` is missing or blank, the client safely prefixes endpoints with `http://localhost:8000` instead of creating an `undefined` URL.
 
 The API client accepts both plain arrays and paginated responses containing `results`, `items`, `data`, or `records` arrays.

@@ -19,10 +19,10 @@ const navigation = [
 ];
 
 const summaryResources = [
-  { resource: 'users', label: 'Estudiantes', accent: 'leaf' },
-  { resource: 'teams', label: 'Equipos', accent: 'coral' },
-  { resource: 'activities', label: 'Actividades registradas', accent: 'gold' },
-  { resource: 'workouts', label: 'Entrenamientos', accent: 'blue' },
+  { endpoint: '/api/users/', label: 'Estudiantes', accent: 'leaf' },
+  { endpoint: '/api/teams/', label: 'Equipos', accent: 'coral' },
+  { endpoint: '/api/activities/', label: 'Actividades registradas', accent: 'gold' },
+  { endpoint: '/api/workouts/', label: 'Entrenamientos', accent: 'blue' },
 ];
 
 function Overview() {
@@ -31,7 +31,7 @@ function Overview() {
 
   useEffect(() => {
     const controller = new AbortController();
-    Promise.all(summaryResources.map(({ resource }) => fetchCollection(resource, { signal: controller.signal })))
+    Promise.all(summaryResources.map(({ endpoint }) => fetchCollection(endpoint, { signal: controller.signal })))
       .then((results) => setCounts(results.map(({ total }) => total)))
       .catch((error) => {
         if (error.name !== 'AbortError') setLoadError(true);
@@ -67,7 +67,7 @@ function Overview() {
         </div>
         <div className="metrics-grid">
           {summaryResources.map((item, index) => (
-            <article className={`metric-item metric-${item.accent}`} key={item.resource}>
+            <article className={`metric-item metric-${item.accent}`} key={item.endpoint}>
               <span className="metric-value">{counts ? counts[index] : '—'}</span>
               <span className="metric-label">{item.label}</span>
             </article>

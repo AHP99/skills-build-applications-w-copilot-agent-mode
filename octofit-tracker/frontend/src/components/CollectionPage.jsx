@@ -11,7 +11,7 @@ function formatValue(value) {
   return String(value);
 }
 
-export default function CollectionPage({ eyebrow, title, description, resource, columns }) {
+export default function CollectionPage({ eyebrow, title, description, endpoint, columns }) {
   const [items, setItems] = useState([]);
   const [total, setTotal] = useState(0);
   const [state, setState] = useState('loading');
@@ -21,7 +21,7 @@ export default function CollectionPage({ eyebrow, title, description, resource, 
   useEffect(() => {
     const controller = new AbortController();
 
-    fetchCollection(resource, { signal: controller.signal })
+    fetchCollection(endpoint, { signal: controller.signal })
       .then((result) => {
         setItems(result.items);
         setTotal(result.total);
@@ -34,7 +34,7 @@ export default function CollectionPage({ eyebrow, title, description, resource, 
       });
 
     return () => controller.abort();
-  }, [attempt, resource]);
+  }, [attempt, endpoint]);
 
   function retryLoad() {
     setState('loading');
@@ -81,7 +81,7 @@ export default function CollectionPage({ eyebrow, title, description, resource, 
             </thead>
             <tbody>
               {items.map((item, index) => (
-                <tr key={item._id ?? item.id ?? `${resource}-${index}`}>
+                <tr key={item._id ?? item.id ?? `${endpoint}-${index}`}>
                   {columns.map((column) => (
                     <td key={column.key}>
                       {column.key === 'displayName' || column.key === 'name' || column.key === 'title'

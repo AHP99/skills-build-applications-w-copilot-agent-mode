@@ -12,7 +12,7 @@ export default function Leaderboard() {
       eyebrow="Competencia amistosa"
       title="Leaderboard"
       description="Puntos acumulados por estudiantes en sus actividades."
-      resource="leaderboard"
+      endpoint="/api/leaderboard/"
       columns={columns}
     />
   );
